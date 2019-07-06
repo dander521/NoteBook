@@ -30,6 +30,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- 自动生成接口文档依赖 -->
         <dependency>
             <groupId>com.spring4all</groupId>
