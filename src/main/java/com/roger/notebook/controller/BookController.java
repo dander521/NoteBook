@@ -7,6 +7,7 @@ import com.roger.notebook.Service.model.UserModel;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,8 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Value("${imagepath}")
+    private String imagePath;
 
     @RequestMapping(value = "createBook", method = RequestMethod.POST)
     public ResponseVO createBook(@RequestParam(name = "photo", required = true) MultipartFile photo,
@@ -59,7 +62,7 @@ public class BookController {
         }
         String fileName = photo.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-        String filePath = "/Users/dander/Documents/Work/notebook/src/main/java/com/roger/notebook/upload/"; // 上传后的路径
+        String filePath = imagePath;
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {

@@ -6,11 +6,10 @@ import com.roger.notebook.Service.NoteService;
 import com.roger.notebook.Service.model.BookModel;
 import com.roger.notebook.Service.model.NoteModel;
 import com.roger.notebook.Service.model.UserModel;
-import com.roger.notebook.dataObject.BookDO;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +38,9 @@ public class NoteController {
     @Autowired
     private BookService bookService;
 
+    @Value("${imagepath}")
+    private String imagePath;
+
     @RequestMapping(value = "createNote", method = RequestMethod.POST)
     public ResponseVO createNote(@RequestParam(name = "photo", required = true) MultipartFile photo,
                                  @RequestParam(name = "title", required = true) String title,
@@ -64,7 +66,7 @@ public class NoteController {
         }
         String fileName = photo.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-        String filePath = "/Users/dander/Documents/Work/notebook/src/main/java/com/roger/notebook/upload/"; // 上传后的路径
+        String filePath = imagePath; // 上传后的路径
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {
