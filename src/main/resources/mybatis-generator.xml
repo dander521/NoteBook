@@ -26,7 +26,7 @@
         <javaClientGenerator targetPackage="com.roger.notebook.dao" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="nb_user_t" domainObjectName="UserDO"></table>
+<!--        <table tableName="nb_user_t" domainObjectName="UserDO"></table>-->
 <!--        <table tableName="nb_book_category_t" domainObjectName="BookDO"></table>-->
 <!--        <table tableName="nb_note_t" domainObjectName="NoteDO"></table>-->
     </context>

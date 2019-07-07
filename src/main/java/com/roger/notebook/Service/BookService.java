@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
 
-    public List<BookModel> getBookList(String keywords);
+    public List<BookModel> getBookList(String title);
 
-    public boolean createBookCategory(BookModel bookModel);
+    public BookModel createBookCategory(BookModel bookModel);
 }
