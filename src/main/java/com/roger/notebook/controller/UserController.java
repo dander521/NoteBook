@@ -11,6 +11,7 @@ import com.roger.notebook.response.ResponseVO;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,9 @@ public class UserController {
 
     @Autowired
     private UserDOMapper userDOMapper;
+
+    @Value("imagepath")
+    private String imagePath;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseVO login(@RequestParam(name = "phone") String phone, @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -120,7 +124,7 @@ public class UserController {
         }
         String fileName = avatar.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-        String filePath = "/Users/dander/Documents/Work/notebook/src/main/java/com/roger/notebook/upload/"; // 上传后的路径
+        String filePath = imagePath;
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {
