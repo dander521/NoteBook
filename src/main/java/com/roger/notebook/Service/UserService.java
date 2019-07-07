@@ -1,14 +1,15 @@
 package com.roger.notebook.Service;
 
 import com.roger.notebook.Service.model.UserModel;
+import com.roger.notebook.error.BusinessException;
 
 public interface UserService {
 
-    public int login(String phone, String password);
+    public UserModel login(String phone, String password) throws BusinessException;
 
-    public int register(String phone, String password);
+    public boolean register(String phone, String password) throws BusinessException;
 
-    public UserModel getUserInfo();
+    public UserModel getUserInfo(int uuid) throws BusinessException;
 
-    public boolean updateUserInfo(UserModel userModel);
+    public boolean updateUserInfo(UserModel userModel) throws BusinessException;
 }

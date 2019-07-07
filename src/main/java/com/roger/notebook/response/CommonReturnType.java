@@ -1,8 +1,12 @@
 package com.roger.notebook.response;
 
+import lombok.Data;
+
+@Data
 public class CommonReturnType {
 
     private String status;
+    private String code;
     private Object data;
 
 
@@ -14,6 +18,7 @@ public class CommonReturnType {
         CommonReturnType commonReturnType = new CommonReturnType();
         commonReturnType.setData(result);
         commonReturnType.setStatus(status);
+        commonReturnType.setCode("0");
         return commonReturnType;
     }
 
