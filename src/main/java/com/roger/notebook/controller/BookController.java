@@ -4,13 +4,8 @@ import com.alibaba.druid.util.StringUtils;
 import com.roger.notebook.Service.BookService;
 import com.roger.notebook.Service.model.BookModel;
 import com.roger.notebook.Service.model.UserModel;
-import com.roger.notebook.controller.viewmodel.BookVO;
-import com.roger.notebook.dao.BookDOMapper;
-import com.roger.notebook.dataObject.BookDO;
-import com.roger.notebook.dataObject.UserDO;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/book/")

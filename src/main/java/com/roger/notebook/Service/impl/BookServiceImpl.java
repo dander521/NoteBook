@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -19,7 +21,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookModel> getBookList(String title) {
-
         List<BookDO> bookDOS = bookDOMapper.selectBookList(title);
 
         List<BookModel> bookModels = new ArrayList<>();
