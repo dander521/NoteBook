@@ -70,7 +70,7 @@ public class BookController {
         }
         try {
             photo.transferTo(dest);
-            bookModel.setPhoto(filePath+fileName);
+            bookModel.setPhoto(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

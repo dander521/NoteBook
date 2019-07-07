@@ -133,7 +133,7 @@ public class UserController {
         }
         try {
             avatar.transferTo(dest);
-            userModel.setAvatar(filePath+fileName);
+            userModel.setAvatar(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

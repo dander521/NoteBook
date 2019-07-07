@@ -74,7 +74,7 @@ public class NoteController {
         }
         try {
             photo.transferTo(dest);
-            noteModel.setPhoto(filePath+fileName);
+            noteModel.setPhoto(fileName);
 
         } catch (IOException e) {
             e.printStackTrace();
