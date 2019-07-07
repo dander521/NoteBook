@@ -86,7 +86,9 @@ public class BookController {
     }
 
     @RequestMapping(value = "getBookList", method = RequestMethod.POST)
-    public ResponseVO getBookList(@RequestParam(name = "title", required = false) String title) {
+    public ResponseVO getBookList(@RequestParam(name = "keyword", required = false) String keyword,
+                                  @RequestParam(name = "page", required = false) String page,
+                                  @RequestParam(name = "pageSize", required = false) String pageSize) {
         String token = httpServletRequest.getHeader("token");
         if (StringUtils.isEmpty(token)) {
             return ResponseVO.serviceFail("用户还未登录");
@@ -97,7 +99,15 @@ public class BookController {
             return ResponseVO.serviceFail("登录已失效，请重新登录");
         }
 
-        List<BookModel> bookList = bookService.getBookList(title);
+        if (page==null) {
+            page = "1";
+        }
+
+        if (pageSize==null) {
+            pageSize = "10";
+        }
+
+        List<BookModel> bookList = bookService.getBookList(keyword,Integer.parseInt(page),Integer.parseInt(pageSize));
 
         if (bookList!=null) {
             Map<String, Object> map = new HashMap<>();

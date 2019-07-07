@@ -71,4 +71,16 @@
     select noteid, bookid, remark, title, content, photo, createtime
     from nb_note_t
   </select>
+
+  <select id="selectNoteListByKeyword" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select noteid, bookid, remark, title, content, photo, createtime
+    from nb_note_t
+    where title like "%${keyword}%"
+  </select>
+
+  <select id="selectNoteListByBookId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select noteid, bookid, remark, title, content, photo, createtime
+    from nb_note_t
+    where bookid = #{bookid,jdbcType=INTEGER}
+  </select>
 </mapper>

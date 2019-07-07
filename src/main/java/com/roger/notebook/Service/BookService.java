@@ -7,7 +7,9 @@ import java.util.Map;
 
 public interface BookService {
 
-    public List<BookModel> getBookList(String title);
+    public List<BookModel> getBookList(String keyword, int page, int pageSize);
 
     public boolean createBookCategory(BookModel bookModel);
+
+    public BookModel getBookModel(int bookid);
 }

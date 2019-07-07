@@ -1,7 +1,9 @@
 package com.roger.notebook.dao;
 
+import com.roger.notebook.dataObject.BookDO;
 import com.roger.notebook.dataObject.NoteDO;
 import java.util.List;
+import java.util.Map;
 
 public interface NoteDOMapper {
     /**
@@ -43,4 +45,9 @@ public interface NoteDOMapper {
      * @mbggenerated Sun Jul 07 13:05:59 CST 2019
      */
     int updateByPrimaryKey(NoteDO record);
+
+    List<NoteDO> selectNoteListByKeyword(Map map);
+
+    List<NoteDO> selectNoteListByBookId(Integer bookid);
+
 }

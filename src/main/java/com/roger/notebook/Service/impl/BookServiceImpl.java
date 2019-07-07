@@ -1,5 +1,6 @@
 package com.roger.notebook.Service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.roger.notebook.Service.BookService;
 import com.roger.notebook.Service.model.BookModel;
 import com.roger.notebook.dao.BookDOMapper;
@@ -20,9 +21,12 @@ public class BookServiceImpl implements BookService {
     private BookDOMapper bookDOMapper;
 
     @Override
-    public List<BookModel> getBookList(String title) {
+    public List<BookModel> getBookList(String keyword, int page, int pageSize) {
+        // 开始分页
+        PageHelper.startPage(page, pageSize);
+
         Map map = new HashMap();
-        map.put("title", title);
+        map.put("keyword", keyword);
         List<BookDO> bookDOS = bookDOMapper.selectBookList(map);
 
         List<BookModel> bookModels = new ArrayList<>();
@@ -49,4 +53,14 @@ public class BookServiceImpl implements BookService {
         }
         return false;
     }
+
+    @Override
+    public BookModel getBookModel(int bookid) {
+        BookDO bookDO = bookDOMapper.selectByPrimaryKey(bookid);
+        BookModel bookModel = new BookModel();
+        BeanUtils.copyProperties(bookDO, bookModel);
+        return bookModel;
+    }
+
+
 }

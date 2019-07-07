@@ -9,6 +9,7 @@ public class NoteModel implements Serializable {
 
     private Integer noteid;
     private Integer bookid;
+    private String bookname;
     private String remark;
     private String title;
     private String content;

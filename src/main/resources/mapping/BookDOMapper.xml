@@ -69,6 +69,6 @@
   <select id="selectBookList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select bookid, title, subtitle, photo, createtime
     from nb_book_category_t
-    where title like "%${title}%"
+    where title like "%${keyword}%"
   </select>
 </mapper>
