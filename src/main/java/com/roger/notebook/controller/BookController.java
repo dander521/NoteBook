@@ -110,7 +110,7 @@ public class BookController {
             pageSize = "10";
         }
 
-        List<BookModel> bookList = bookService.getBookList(keyword,Integer.parseInt(page),Integer.parseInt(pageSize));
+        List<BookModel> bookList = bookService.getBookList(userModel.getUuid(),keyword,Integer.parseInt(page),Integer.parseInt(pageSize));
 
         if (bookList!=null) {
             Map<String, Object> map = new HashMap<>();

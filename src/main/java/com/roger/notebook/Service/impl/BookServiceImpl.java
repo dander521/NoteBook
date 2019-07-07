@@ -21,12 +21,13 @@ public class BookServiceImpl implements BookService {
     private BookDOMapper bookDOMapper;
 
     @Override
-    public List<BookModel> getBookList(String keyword, int page, int pageSize) {
+    public List<BookModel> getBookList(int uuid, String keyword, int page, int pageSize) {
         // 开始分页
         PageHelper.startPage(page, pageSize);
 
         Map map = new HashMap();
         map.put("keyword", keyword);
+        map.put("uuid", uuid);
         List<BookDO> bookDOS = bookDOMapper.selectBookList(map);
 
         List<BookModel> bookModels = new ArrayList<>();

@@ -123,7 +123,7 @@ public class NoteController {
         if (pageSize==null) {
             pageSize = "10";
         }
-        List<NoteModel> bookList = noteService.getNoteList(Integer.parseInt(bookid), keyword, Integer.parseInt(page), Integer.parseInt(pageSize));
+        List<NoteModel> bookList = noteService.getNoteList(userModel.getUuid(), Integer.parseInt(bookid), keyword, Integer.parseInt(page), Integer.parseInt(pageSize));
         List<NoteModel> result = new ArrayList<>();
         for (NoteModel noteModel: bookList) {
             BookModel bookModel = bookService.getBookModel(noteModel.getBookid());

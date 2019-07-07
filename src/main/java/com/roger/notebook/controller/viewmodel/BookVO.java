@@ -10,4 +10,5 @@ public class BookVO {
     private String subtitle;
     private String photo;
     private String createtime;
+    private Integer uuid;
 }

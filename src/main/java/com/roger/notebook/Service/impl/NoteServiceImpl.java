@@ -24,18 +24,20 @@ public class NoteServiceImpl implements NoteService {
     private NoteDOMapper noteDOMapper;
 
     @Override
-    public List<NoteModel> getNoteList(int bookId, String keyword, int page, int pageSize) {
+    public List<NoteModel> getNoteList(int uuid, int bookId, String keyword, int page, int pageSize) {
 
         // 开始分页
         PageHelper.startPage(page, pageSize);
 
         Map map = new HashMap();
-        map.put("keyword", keyword);
+        map.put("uuid", uuid);
         List<NoteDO> noteDOS = null;
         if (!StringUtils.isEmpty(keyword)) {
+            map.put("keyword", keyword);
             noteDOS = noteDOMapper.selectNoteListByKeyword(map);
         } else if (bookId > 0) {
-            noteDOS = noteDOMapper.selectNoteListByBookId(bookId);
+            map.put("bookid", bookId);
+            noteDOS = noteDOMapper.selectNoteListByBookId(map);
         } else {
             noteDOS = noteDOMapper.selectAll();
         }

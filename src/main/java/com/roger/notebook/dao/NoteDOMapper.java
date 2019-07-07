@@ -48,6 +48,6 @@ public interface NoteDOMapper {
 
     List<NoteDO> selectNoteListByKeyword(Map map);
 
-    List<NoteDO> selectNoteListByBookId(Integer bookid);
+    List<NoteDO> selectNoteListByBookId(Map map);
 
 }

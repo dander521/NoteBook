@@ -15,4 +15,5 @@ public class NoteModel implements Serializable {
     private String content;
     private String photo;
     private String createtime;
+    private Integer uuid;
 }

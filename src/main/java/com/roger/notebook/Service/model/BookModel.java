@@ -12,4 +12,5 @@ public class BookModel implements Serializable {
     private String subtitle;
     private String photo;
     private String createtime;
+    private Integer uuid;
 }

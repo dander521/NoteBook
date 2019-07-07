@@ -12,4 +12,5 @@ public class NoteVO {
     private String content;
     private String photo;
     private String createtime;
+    private Integer uuid;
 }
