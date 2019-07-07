@@ -21,7 +21,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookModel> getBookList(String title) {
-        List<BookDO> bookDOS = bookDOMapper.selectBookList(title);
+        Map map = new HashMap();
+        map.put("title", title);
+        List<BookDO> bookDOS = bookDOMapper.selectBookList(map);
 
         List<BookModel> bookModels = new ArrayList<>();
         for (BookDO bookDo: bookDOS) {

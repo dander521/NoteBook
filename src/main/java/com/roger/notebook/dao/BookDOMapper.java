@@ -47,6 +47,6 @@ public interface BookDOMapper {
      */
     int updateByPrimaryKey(BookDO record);
 
-    List<BookDO> selectBookList(@Param("title") String title);
+    List<BookDO> selectBookList(Map map);
 
 }
