@@ -8,6 +8,7 @@ import com.roger.notebook.dao.UserDOMapper;
 import com.roger.notebook.dataObject.UserDO;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
+import io.swagger.models.auth.In;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class UserController {
     @Autowired
     private UserDOMapper userDOMapper;
 
-    @Value("imagepath")
+    @Value("${imagepath}")
     private String imagePath;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -106,7 +107,7 @@ public class UserController {
     @RequestMapping(value = "updateUserInfo", method = RequestMethod.POST)
     public ResponseVO updateUserInfo(@RequestParam(name = "avatar", required = false) MultipartFile avatar,
                                            @RequestParam(name = "nickname", required = false) String nickname,
-                                           @RequestParam(name = "sex", required = false) int sex,
+                                           @RequestParam(name = "sex", required = false) String sex,
                                            @RequestParam(name = "address", required = false) String address) throws BusinessException {
 
         String token = httpServletRequest.getHeader("token");
@@ -140,8 +141,8 @@ public class UserController {
         if (!StringUtils.isEmpty(nickname)) {
             userModel.setNickname(nickname);
         }
-        if (!StringUtils.isEmpty(sex+"")) {
-            userModel.setSex(sex);
+        if (!StringUtils.isEmpty(sex)) {
+            userModel.setSex(Integer.parseInt(sex));
         }
         if (!StringUtils.isEmpty(address)) {
             userModel.setAddress(address);
