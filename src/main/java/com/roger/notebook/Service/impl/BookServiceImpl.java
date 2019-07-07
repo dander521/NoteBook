@@ -34,7 +34,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookModel createBookCategory(BookModel bookModel) {
+    public boolean createBookCategory(BookModel bookModel) {
 
         BookDO bookDO = new BookDO();
 
@@ -43,11 +43,8 @@ public class BookServiceImpl implements BookService {
         int insert = bookDOMapper.insert(bookDO);
 
         if (insert>0) {
-            BookDO dbDo = bookDOMapper.selectByPrimaryKey(insert);
-            BookModel result = new BookModel();
-            BeanUtils.copyProperties(dbDo, result);
-            return result;
+            return true;
         }
-        return null;
+        return false;
     }
 }

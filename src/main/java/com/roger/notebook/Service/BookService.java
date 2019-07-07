@@ -9,5 +9,5 @@ public interface BookService {
 
     public List<BookModel> getBookList(String title);
 
-    public BookModel createBookCategory(BookModel bookModel);
+    public boolean createBookCategory(BookModel bookModel);
 }

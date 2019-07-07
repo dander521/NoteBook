@@ -76,13 +76,13 @@ public class BookController {
         bookModel.setSubtitle(subtitle);
         bookModel.setCreatetime(createtime);
 
-        BookModel bookCategory = bookService.createBookCategory(bookModel);
+        boolean isSuccess = bookService.createBookCategory(bookModel);
 
-        if (bookCategory == null) {
+        if (!isSuccess) {
             return ResponseVO.serviceFail("创建失败");
         }
 
-        return ResponseVO.success(bookCategory);
+        return ResponseVO.success("创建成功");
     }
 
     @RequestMapping(value = "getBookList", method = RequestMethod.POST)
