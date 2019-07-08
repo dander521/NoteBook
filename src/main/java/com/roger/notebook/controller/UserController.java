@@ -80,6 +80,7 @@ public class UserController {
 
         Map<String, String> map = new HashMap<>();
         map.put("token", uuidToken);
+        map.put("uuid", ""+userModel.getUuid());
 
         return ResponseVO.success(map);
     }
@@ -157,7 +158,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "getUserInfo", method = RequestMethod.POST)
-    public ResponseVO getUserInfo(@RequestParam(name = "uuid", required = true) int uuid) throws BusinessException {
+    public ResponseVO getUserInfo() throws BusinessException {
 
         String token = httpServletRequest.getHeader("token");
         if (StringUtils.isEmpty(token)) {

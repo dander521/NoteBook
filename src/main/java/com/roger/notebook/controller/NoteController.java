@@ -85,6 +85,7 @@ public class NoteController {
         noteModel.setCreatetime(createtime);
         noteModel.setContent(content);
         noteModel.setRemark(remark);
+        noteModel.setUuid(userModel.getUuid());
 
         BookModel bookModel = bookService.getBookModel(bookid);
         noteModel.setBookname(bookModel.getTitle());
@@ -133,7 +134,7 @@ public class NoteController {
 
         if (bookList!=null) {
             Map<String, Object> map = new HashMap<>();
-            map.put("bookList", bookList);
+            map.put("noteList", bookList);
 
             return ResponseVO.success(map);
         }

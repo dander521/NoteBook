@@ -78,6 +78,7 @@ public class BookController {
         bookModel.setTitle(title);
         bookModel.setSubtitle(subtitle);
         bookModel.setCreatetime(createtime);
+        bookModel.setUuid(userModel.getUuid());
 
         boolean isSuccess = bookService.createBookCategory(bookModel);
 
