@@ -8,8 +8,6 @@ import com.roger.notebook.dao.UserDOMapper;
 import com.roger.notebook.dataObject.UserDO;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
-import io.swagger.models.auth.In;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
 
-import javax.jws.WebResult;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -168,10 +165,6 @@ public class UserController {
         UserModel checkModel = (UserModel) redisTemplate.opsForValue().get(token);
         if (checkModel == null) {
             return ResponseVO.serviceFail("登录已失效，请重新登录");
-        }
-
-        if (uuid < 1) {
-            return ResponseVO.serviceFail("参数错误");
         }
 
         UserModel userModel = userService.getUserInfo(checkModel.getUuid());
