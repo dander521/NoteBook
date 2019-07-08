@@ -124,16 +124,9 @@ public class NoteController {
         if (pageSize==null) {
             pageSize = "10";
         }
-        List<NoteModel> bookList = noteService.getNoteList(userModel.getUuid(), Integer.parseInt(bookid), keyword, Integer.parseInt(page), Integer.parseInt(pageSize));
-        List<NoteModel> result = new ArrayList<>();
-        for (NoteModel noteModel: bookList) {
-            BookModel bookModel = bookService.getBookModel(noteModel.getBookid());
-            noteModel.setBookname(bookModel.getTitle());
-            result.add(noteModel);
-        }
-
+        List<NoteModel> noteList = noteService.getNoteList(userModel.getUuid(), Integer.parseInt(bookid), keyword, Integer.parseInt(page), Integer.parseInt(pageSize));
         if (bookList!=null) {
-            return ResponseVO.success(result);
+            return ResponseVO.success(noteList);
         }
         return ResponseVO.serviceFail("请求失败");
     }
