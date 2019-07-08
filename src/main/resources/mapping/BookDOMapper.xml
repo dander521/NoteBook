@@ -32,7 +32,7 @@
     insert into nb_book_category_t (bookid, title, subtitle, 
       photo, createtime, UUID)
     values (#{bookid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
-      #{photo,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{UUID,jdbcType=INTEGER})
+      #{photo,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{uuid,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.roger.notebook.dataObject.BookDO">
     <!--

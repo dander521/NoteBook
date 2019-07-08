@@ -77,7 +77,6 @@ public class UserController {
 
         Map<String, String> map = new HashMap<>();
         map.put("token", uuidToken);
-        map.put("uuid", ""+userModel.getUuid());
 
         return ResponseVO.success(map);
     }

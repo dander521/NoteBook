@@ -36,7 +36,7 @@
       createtime, UUID)
     values (#{noteid,jdbcType=INTEGER}, #{bookid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=VARCHAR}, #{UUID,jdbcType=INTEGER})
+      #{createtime,jdbcType=VARCHAR}, #{uuid,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.roger.notebook.dataObject.NoteDO">
     <!--
