@@ -114,10 +114,7 @@ public class BookController {
         List<BookModel> bookList = bookService.getBookList(userModel.getUuid(),keyword,Integer.parseInt(page),Integer.parseInt(pageSize));
 
         if (bookList!=null) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("bookList", bookList);
-
-            return ResponseVO.success(map);
+            return ResponseVO.success(bookList);
         }
         return ResponseVO.serviceFail("请求失败");
     }

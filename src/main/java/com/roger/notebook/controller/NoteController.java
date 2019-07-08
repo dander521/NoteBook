@@ -133,10 +133,7 @@ public class NoteController {
         }
 
         if (bookList!=null) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("noteList", bookList);
-
-            return ResponseVO.success(map);
+            return ResponseVO.success(result);
         }
         return ResponseVO.serviceFail("请求失败");
     }
