@@ -37,7 +37,7 @@ public class NoteServiceImpl implements NoteService {
             map.put("bookid", bookId);
             noteDOS = noteDOMapper.selectNoteListByBookId(map);
         } else {
-            noteDOS = noteDOMapper.selectAll();
+            noteDOS = noteDOMapper.selectAll(map);
         }
 
         List<NoteModel> noteModels = new ArrayList<>();
