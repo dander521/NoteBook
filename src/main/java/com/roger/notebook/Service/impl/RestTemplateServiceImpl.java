@@ -3,7 +3,6 @@ package com.roger.notebook.Service.impl;
 import com.roger.notebook.Service.RestTemplateService;
 import com.roger.notebook.Service.model.RestTemplateModel;
 import com.roger.notebook.util.WxMappingJackson2HttpMessageConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,8 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     public RestTemplateModel getRestTemplateData(){
         RestTemplate restTemplate  = new RestTemplate();
         restTemplate.getMessageConverters().add(new WxMappingJackson2HttpMessageConverter());
-        RestTemplateModel restTemplateModel = restTemplate.getForObject(thirdUrl, RestTemplateModel.class);
+        ResponseEntity<RestTemplateModel> responseEntity = restTemplate.getForEntity(thirdUrl, RestTemplateModel.class);
+        RestTemplateModel restTemplateModel = responseEntity.getBody();
         return restTemplateModel;
     }
 

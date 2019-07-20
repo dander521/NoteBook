@@ -1,6 +1,8 @@
 package com.roger.notebook.controller;
 
 import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.roger.notebook.Service.RestTemplateService;
 import com.roger.notebook.Service.UserService;
 import com.roger.notebook.Service.model.RestTemplateModel;
@@ -11,9 +13,11 @@ import com.roger.notebook.dao.UserDOMapper;
 import com.roger.notebook.dataObject.UserDO;
 import com.roger.notebook.error.BusinessException;
 import com.roger.notebook.response.ResponseVO;
+import com.roger.notebook.util.HttpClientUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.json.JsonParser;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +61,9 @@ public class UserController {
 
     @Value("${guideUrl}")
     private String guideUrl;
+
+    @Value("${thirdUrl}")
+    private String thirdUrl;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseVO login(@RequestParam(name = "phone") String phone, @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -188,8 +195,27 @@ public class UserController {
 
     @RequestMapping(value = "getUserGuide", method = RequestMethod.GET)
     public ResponseVO getUserGuide() {
-        RestTemplateModel restTemplateData = restTemplateService.getRestTemplateData();
-
+//        RestTemplateModel restTemplateData = restTemplateService.getRestTemplateData();
+//
+//        RestTemplateVO restTemplateVO = new RestTemplateVO();
+//
+//        if (restTemplateData==null ||
+//            restTemplateData.getUrl()==null ||
+//            StringUtils.equals(restTemplateData.getSuccess(), "false") ||
+//            StringUtils.isEmpty(restTemplateData.getUrl())) {
+//            restTemplateVO.setTop("50");
+//            restTemplateVO.setLeft("30");
+//            restTemplateVO.setUrl(guideUrl);
+//            return ResponseVO.success(restTemplateVO);
+//        }
+//
+//        restTemplateVO.setTop("0");
+//        restTemplateVO.setLeft("0");
+//        restTemplateVO.setUrl(restTemplateData.getUrl());
+//        return ResponseVO.success(restTemplateVO);
+        String doGet = HttpClientUtil.doGet(thirdUrl);
+        System.out.println(doGet);
+        RestTemplateModel restTemplateData = JSON.parseObject(doGet, RestTemplateModel.class);
         RestTemplateVO restTemplateVO = new RestTemplateVO();
 
         if (restTemplateData==null ||
@@ -206,6 +232,7 @@ public class UserController {
         restTemplateVO.setLeft("0");
         restTemplateVO.setUrl(restTemplateData.getUrl());
         return ResponseVO.success(restTemplateVO);
+
     }
 
     public String EncodeByMD5(String str) throws UnsupportedEncodingException, NoSuchAlgorithmException {
