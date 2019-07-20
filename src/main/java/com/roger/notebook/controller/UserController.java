@@ -1,8 +1,11 @@
 package com.roger.notebook.controller;
 
 import com.alibaba.druid.util.StringUtils;
+import com.roger.notebook.Service.RestTemplateService;
 import com.roger.notebook.Service.UserService;
+import com.roger.notebook.Service.model.RestTemplateModel;
 import com.roger.notebook.Service.model.UserModel;
+import com.roger.notebook.controller.viewmodel.RestTemplateVO;
 import com.roger.notebook.controller.viewmodel.UserVO;
 import com.roger.notebook.dao.UserDOMapper;
 import com.roger.notebook.dataObject.UserDO;
@@ -38,6 +41,9 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private RestTemplateService restTemplateService;
+
+    @Autowired
     private RedisTemplate redisTemplate;
 
     @Autowired
@@ -48,6 +54,9 @@ public class UserController {
 
     @Value("${imagepath}")
     private String imagePath;
+
+    @Value("${guideUrl}")
+    private String guideUrl;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseVO login(@RequestParam(name = "phone") String phone, @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
@@ -175,6 +184,28 @@ public class UserController {
         BeanUtils.copyProperties(userModel, userVO);
 
         return ResponseVO.success(userVO);
+    }
+
+    @RequestMapping(value = "getUserGuide", method = RequestMethod.GET)
+    public ResponseVO getUserGuide() {
+        RestTemplateModel restTemplateData = restTemplateService.getRestTemplateData();
+
+        RestTemplateVO restTemplateVO = new RestTemplateVO();
+
+        if (restTemplateData==null ||
+            restTemplateData.getUrl()==null ||
+            StringUtils.equals(restTemplateData.getSuccess(), "false") ||
+            StringUtils.isEmpty(restTemplateData.getUrl())) {
+            restTemplateVO.setTop("50");
+            restTemplateVO.setLeft("30");
+            restTemplateVO.setUrl(guideUrl);
+            return ResponseVO.success(restTemplateVO);
+        }
+
+        restTemplateVO.setTop("0");
+        restTemplateVO.setLeft("0");
+        restTemplateVO.setUrl(restTemplateData.getUrl());
+        return ResponseVO.success(restTemplateVO);
     }
 
     public String EncodeByMD5(String str) throws UnsupportedEncodingException, NoSuchAlgorithmException {
