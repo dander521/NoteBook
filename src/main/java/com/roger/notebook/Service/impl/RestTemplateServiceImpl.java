@@ -1,5 +1,8 @@
 package com.roger.notebook.Service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonParser;
 import com.roger.notebook.Service.RestTemplateService;
 import com.roger.notebook.Service.model.RestTemplateModel;
 import com.roger.notebook.util.WxMappingJackson2HttpMessageConverter;
@@ -21,8 +24,11 @@ public class RestTemplateServiceImpl implements RestTemplateService {
     public RestTemplateModel getRestTemplateData(){
         RestTemplate restTemplate  = new RestTemplate();
         restTemplate.getMessageConverters().add(new WxMappingJackson2HttpMessageConverter());
-        ResponseEntity<RestTemplateModel> responseEntity = restTemplate.getForEntity(thirdUrl, RestTemplateModel.class);
-        RestTemplateModel restTemplateModel = responseEntity.getBody();
+//        ResponseEntity<RestTemplateModel> responseEntity = restTemplate.getForEntity(thirdUrl, RestTemplateModel.class);
+//        RestTemplateModel restTemplateModel = responseEntity.getBody();
+//        return restTemplateModel;
+        String forObject = restTemplate.getForObject(thirdUrl, String.class);
+        RestTemplateModel restTemplateModel = JSON.parseObject(forObject, RestTemplateModel.class);
         return restTemplateModel;
     }
 

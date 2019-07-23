@@ -195,27 +195,8 @@ public class UserController {
 
     @RequestMapping(value = "getUserGuide", method = RequestMethod.GET)
     public ResponseVO getUserGuide() {
-//        RestTemplateModel restTemplateData = restTemplateService.getRestTemplateData();
-//
-//        RestTemplateVO restTemplateVO = new RestTemplateVO();
-//
-//        if (restTemplateData==null ||
-//            restTemplateData.getUrl()==null ||
-//            StringUtils.equals(restTemplateData.getSuccess(), "false") ||
-//            StringUtils.isEmpty(restTemplateData.getUrl())) {
-//            restTemplateVO.setTop("50");
-//            restTemplateVO.setLeft("30");
-//            restTemplateVO.setUrl(guideUrl);
-//            return ResponseVO.success(restTemplateVO);
-//        }
-//
-//        restTemplateVO.setTop("0");
-//        restTemplateVO.setLeft("0");
-//        restTemplateVO.setUrl(restTemplateData.getUrl());
-//        return ResponseVO.success(restTemplateVO);
-        String doGet = HttpClientUtil.doGet(thirdUrl);
-        System.out.println(doGet);
-        RestTemplateModel restTemplateData = JSON.parseObject(doGet, RestTemplateModel.class);
+        RestTemplateModel restTemplateData = restTemplateService.getRestTemplateData();
+
         RestTemplateVO restTemplateVO = new RestTemplateVO();
 
         if (restTemplateData==null ||
@@ -232,6 +213,25 @@ public class UserController {
         restTemplateVO.setLeft("0");
         restTemplateVO.setUrl(restTemplateData.getUrl());
         return ResponseVO.success(restTemplateVO);
+//        String doGet = HttpClientUtil.doGet(thirdUrl);
+//        System.out.println(doGet);
+//        RestTemplateModel restTemplateData = JSON.parseObject(doGet, RestTemplateModel.class);
+//        RestTemplateVO restTemplateVO = new RestTemplateVO();
+//
+//        if (restTemplateData==null ||
+//            restTemplateData.getUrl()==null ||
+//            StringUtils.equals(restTemplateData.getSuccess(), "false") ||
+//            StringUtils.isEmpty(restTemplateData.getUrl())) {
+//            restTemplateVO.setTop("50");
+//            restTemplateVO.setLeft("30");
+//            restTemplateVO.setUrl(guideUrl);
+//            return ResponseVO.success(restTemplateVO);
+//        }
+//
+//        restTemplateVO.setTop("0");
+//        restTemplateVO.setLeft("0");
+//        restTemplateVO.setUrl(restTemplateData.getUrl());
+//        return ResponseVO.success(restTemplateVO);
 
     }
 
